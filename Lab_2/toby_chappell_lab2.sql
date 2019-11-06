@@ -89,17 +89,15 @@ FROM cars
 WHERE cylinders = 8;
 
 --18.	Write a query to return the average displacement per origin+cylinder combo. What is the result?
-SELECT origin, cylinders, displacement
+SELECT origin, cylinders, AVG(displacement)
 FROM cars
-GROUP BY origin, cylinders
-HAVING AVG(displacement);
+GROUP BY origin, cylinders;
 
 --19.	Write a query to only return the cylinders and average displacement, where the origin is Japan, from the query in #18. (Hint: use a subquery)
-SELECT cylinders, displacement
+SELECT cylinders, AVG(displacement)
 FROM cars
 WHERE origin = 'Japan'
 GROUP BY cylinders
-HAVING AVG(displacement);
 
 --20.	Find the model of the car that has the max horsepower in the US. (Hint: use a subquery)
 SELECT model, horsepower

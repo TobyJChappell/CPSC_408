@@ -2,17 +2,20 @@
 --date: 10/7/19
 --assignment: Assignment 2
 
+DROP TABLE IF EXISTS Customers;
+DROP TABLE IF EXISTS Customer_Address;
+PRAGMA foreign_keys = ON;
+
 --1.	Create a table called Customers with the following structure:
 --		Customer ID – this is a primary key
 --		Customer first name
 --		Customer last name
 --		Customer age
 CREATE TABLE Customers(
-	id INT,
+	c_id INT PRIMARY KEY NOT NULL,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
-	age INT,
-	PRIMARY KEY(id)
+	age INT
 );
 
 --2.	Insert 3 full customer records into the table
@@ -35,13 +38,15 @@ SET first_name = UPPER(first_name);
 --		State
 --		Zip
 CREATE TABLE Customer_Address(
-	id INT,
+	ca_id INT NOT NULL,
 	street_number INT,
 	street_name VARCHAR(50),
 	city VARCHAR(50),
-	state VARCHAR(50),
+	ca_state VARCHAR(50),
 	zip INT,
-	FOREIGN KEY(id) REFERENCES Customers(id)
+	FOREIGN KEY (ca_id) REFERENCES Customers(c_id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 --6.	Insert an address for each of the customers you made in step 2 – make sure to adhere to foreign key rules
@@ -51,10 +56,10 @@ INSERT INTO Customer_Address VALUES(3, 2920, 'Zoo Dr.', 'San Diego', 'CA', 92101
 
 --7.	Update Jim Terf’s customer ID to be something different
 UPDATE Customers
-SET id = 5
+SET c_id = 5
 WHERE UPPER(first_name) = 'JIM' AND UPPER(last_name) = 'TERF';
---WHERE id = 4;
+--Could also do WHERE statement on Jim's current id, ie. WHERE id = 4
 
 --8.	Delete one of the records you made in step 2.
 DELETE FROM Customers
-WHERE id = 1;
+WHERE c_id = 1;
