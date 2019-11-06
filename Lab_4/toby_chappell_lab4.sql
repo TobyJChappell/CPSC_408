@@ -32,7 +32,7 @@ CREATE TABLE Receipts(
 
 .import receipts.csv Receipts
 
-CREATE TABLE customers(
+CREATE TABLE Customers(
 	customer_id INT,
 	last_name VARCHAR(20),
 	first_name VARCHAR(20)
