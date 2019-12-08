@@ -1,14 +1,17 @@
 --author: Toby Chappell
---date: 12/?/19
---assignment: Final Project Database Schema
+--date: 12/9/19
+--assignment: Final Project Unfiltered Database Schema
 
-CREATE TABLE Rating(
-	title_id VARCHAR(9),
-	avg_rating FLOAT(2),
-	num_votes INT,
-	FOREIGN KEY (title_id) REFERENCES Title (title_id)
-	ON UPDATE CASCADE
-	ON DELETE CASCADE
+CREATE TABLE Title(
+	title_id VARCHAR(9) PRIMARY KEY,
+	type VARCHAR(63),
+	primary_title VARCHAR(255),
+	original_title VARCHAR(255),
+	is_adult BIT,
+	start_year INT,
+	end_year INT,
+	runtime INT,
+	genres VARCHAR(255)
 );
 
 CREATE TABLE Name(
@@ -18,6 +21,15 @@ CREATE TABLE Name(
 	death_year INT,
 	profession VARCHAR(255),
 	known_for VARCHAR(255)
+);
+
+CREATE TABLE Rating(
+	title_id VARCHAR(9),
+	avg_rating FLOAT(2),
+	num_votes INT,
+	FOREIGN KEY (title_id) REFERENCES Title (title_id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 CREATE TABLE Aka(
@@ -32,18 +44,6 @@ CREATE TABLE Aka(
 	FOREIGN KEY (title_id) REFERENCES Title (title_id)
 	ON UPDATE CASCADE
 	ON DELETE CASCADE
-);
-
-CREATE TABLE Title(
-	title_id VARCHAR(9) PRIMARY KEY,
-	type VARCHAR(63),
-	primary_title VARCHAR(255),
-	original_title VARCHAR(255),
-	is_adult BIT,
-	start_year INT,
-	end_year INT,
-	runtime INT,
-	genres VARCHAR(255)
 );
 
 CREATE TABLE Crew(

@@ -1,11 +1,10 @@
 # author: Toby Chappell
-# date: 12/?/19
+# date: 12/9/19
 # assignment: Final Project Backend
 
 import pymysql
 import pandas
 import random
-from datetime import datetime
 
 def main():
 	mysql_conn = create_mysql_connection(db_user='root', db_password='1Secret1', host_name='34.68.212.129', db_name='imdb_data')
